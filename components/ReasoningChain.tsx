@@ -25,8 +25,8 @@ function getSteps(category: DeductionCategory, hasEvidence: boolean, yearsOfTena
     case 'painting':
       return [
         { icon: '1', label: 'Claim received', detail: 'landlord claims for repainting' },
-        { icon: '2', label: 'Rule check', detail: hasEvidence ? 'Evidence provided → damage beyond wear' : 'No evidence → apply TPA §108(m) wear exception' },
-        { icon: '3', label: 'Outcome', detail: hasEvidence ? 'Damage qualifies as tenant liability' : "Normal wear — landlord's duty per KA Rent §47" }
+        { icon: '2', label: 'Rule check', detail: hasEvidence ? 'Evidence provided → damage beyond wear' : 'No evidence → apply TPA Section 108(m) wear exception' },
+        { icon: '3', label: 'Outcome', detail: hasEvidence ? 'Damage qualifies as tenant liability' : "Normal wear — landlord's duty per KA Rent Section 47" }
       ];
     case 'fixtures':
       return [
@@ -37,19 +37,19 @@ function getSteps(category: DeductionCategory, hasEvidence: boolean, yearsOfTena
     case 'utilities':
       return [
         { icon: '1', label: 'Claim received', detail: 'landlord claims unpaid utility bills' },
-        { icon: '2', label: 'Rule check', detail: hasEvidence ? 'Bill receipts verified' : 'No bill receipts → §48(a) requires proof' },
+        { icon: '2', label: 'Rule check', detail: hasEvidence ? 'Bill receipts verified' : 'No bill receipts → Section 48(a) requires proof' },
         { icon: '3', label: 'Outcome', detail: hasEvidence ? 'Deduction allowed in full' : 'Bare claim denied' }
       ];
     case 'unpaid_rent':
       return [
         { icon: '1', label: 'Claim received', detail: 'landlord claims unpaid rent' },
-        { icon: '2', label: 'Rule check', detail: hasEvidence ? 'Arrears verified — strict arithmetic' : 'No proof of arrears → §48(a)' },
+        { icon: '2', label: 'Rule check', detail: hasEvidence ? 'Arrears verified — strict arithmetic' : 'No proof of arrears → Section 48(a)' },
         { icon: '3', label: 'Outcome', detail: hasEvidence ? 'months × monthly rent = exact amount' : 'Bare claim denied' }
       ];
     case 'cleaning':
       return [
         { icon: '1', label: 'Claim received', detail: 'landlord deducts for cleaning' },
-        { icon: '2', label: 'Rule check', detail: 'TPA §108(m) wear exception applies' },
+        { icon: '2', label: 'Rule check', detail: 'TPA Section 108(m) wear exception applies' },
         { icon: '3', label: 'Outcome', detail: 'Routine cleaning is normal end-of-tenancy hygiene' }
       ];
   }

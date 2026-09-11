@@ -1,7 +1,7 @@
 'use client';
 import { cn } from '@/lib/cn';
 
-type Role = 'tenant' | 'landlord';
+type Role = 'tenant' | 'landlord' | 'mediator';
 
 const CONFIG: Record<Role, { label: string; badgeClass: string; dotClass: string }> = {
   tenant: {
@@ -13,6 +13,11 @@ const CONFIG: Record<Role, { label: string; badgeClass: string; dotClass: string
     label: 'Landlord view',
     badgeClass: 'bg-landlord/10 text-landlord border border-landlord/20',
     dotClass: 'bg-landlord'
+  },
+  mediator: {
+    label: 'Mediator view',
+    badgeClass: 'bg-saffron/10 text-saffron border border-saffron/20',
+    dotClass: 'bg-saffron'
   }
 };
 

@@ -1,0 +1,153 @@
+
+PROBLEM 01 // PUBLIC TRANSIT — Public Transit Operations
+The Phantom Fleet
+✕
+The Situation & Problem
+
+A mid-sized Indian city operates a fleet of 1,200 buses across 185 routes. On any given weekday, the operations control room sees an 8–14% discrepancy between the scheduled buses and actual GPS pings. Some are genuine breakdowns, some informal detours, some drivers switching off trackers, and some are 'ghost buses' that never left the depot.
+
+The city's transport authority loses an estimated ₹2.1 crore per quarter in revenue leakage and passenger trust erosion because riders at 40% of high-demand stops cannot rely on published ETAs. Existing dashboards show bus locations but cannot distinguish delays from informal rerouting or ghost buses. Dispatchers make reassignment calls that take 12–18 minutes per incident.
+Your Challenge
+
+Build a system that ingests noisy, intermittent GPS traces and a static route-and-timetable feed to produce a real-time operational truth layer that classifies every scheduled trip into one of at least four states: on-track, delayed-but-recoverable, effectively-cancelled, or unverifiable. The system must also recommend a reassignment action (pull from reserve, merge with adjacent route, or do nothing) within 90 seconds of detecting an anomaly.
+Constraints & Requirements
+
+    Hard constraint: The reserve fleet is strictly 8% of total active fleet at any time. You cannot recommend pulling non-existent reserves.
+    A working demo must process a streaming simulation of at least 30 minutes of bus movement and show real-time state transitions on a live map/dashboard.
+    The system must handle at least one 'cascading failure' scenario (e.g. 5 buses on the same route dropping out within 10 minutes).
+    Chaos resilience: Judges may inject additional GPS dropouts or route deviations during the live demo to test robustness.
+
+Data & Sourcing
+
+No data will be provided. Teams must source their own GTFS static feed from any Indian city publishing one (Delhi, Bangalore, Chennai on data.gov.in or OpenMobilityData) or construct a synthetic route network for at least 20 routes and 100 buses. GPS noise must be self-simulated (dropouts of 3–15 min, route deviations of 500m–2km, depot mismatches).
+Judging Criteria
+Evaluation Criterion 	Weight
+Coherence & realism of self-generated simulation 	20%
+Accuracy & speed of trip-state classification 	25%
+Feasibility of reassignment under 8% reserve limit 	20%
+Real-time dashboard UX & clarity of operations view 	20%
+Architecture for handling cascading failures & injected chaos 	15%
+
+
+PROBLEM 02 // JUDICIAL ADMIN — Judicial Administration
+The Adjournment Engine
+✕
+The Situation & Problem
+
+A district court complex in Maharashtra handles ~14,000 active cases across 12 courtrooms, scheduling around 320 hearings daily. Historically, 38–45% of hearings end in adjournment (lawyer no-show, accused not produced, missing documents, or urgent bail pull). Each adjournment delays the next hearing by an average of 22 working days, causing backlogs to grow by 1,100 cases/year.
+
+The daily cause list is currently prepared manually using spreadsheets and printed registers without anticipating which hearings will collapse. When an adjournment occurs, judges sit idle for 15–25 minutes while the next case is called. There is no intelligent overbooking mechanism like airlines use.
+Your Challenge
+
+Build a complete cause-list management application from case intake to schedule generation to mid-day re-optimization that a court clerk could realistically use. Enter/import case metadata, generate an optimized daily cause list for 12 courtrooms by 6 PM the previous evening, and trigger a mid-day re-shuffle at lunch when morning adjournments materialize.
+Constraints & Requirements
+
+    Criminal bail matters must be heard before 11:00 AM.
+    Cases with outstation witnesses (flagged in metadata) cannot be rescheduled within 48 hours.
+    No judge can hear more than 35 matters in a single day.
+    Cases older than 5 years must be prioritized over newer cases of the same type.
+    Mid-day re-optimization must execute in under 60 seconds and produce a revised afternoon list.
+    Chaos resilience: Judges may inject a burst of 8–10 simultaneous adjournments during the demo.
+
+Data & Sourcing
+
+No data provided. Teams must design their own case data schema and populate a realistic test corpus of at least 200 active cases across 12 courtrooms. Schema design is a judged deliverable (reference ecourts.gov.in structures).
+Judging Criteria
+Evaluation Criterion 	Weight
+Completeness and usability of the clerk-facing application 	30%
+Constraint compliance: zero violations of the 4 hard rules 	25%
+Measurable improvement in simulated judge utilization vs FIFO 	20%
+Speed and coherence of mid-day re-optimization under stress 	15%
+Data schema design and extensibility 	10%
+
+
+PROBLEM 03 // LEGAL TECH & PROPTECH — Legal Tech / Proptech
+The Deposit War Room
+✕
+The Situation & Problem
+
+In Bangalore, average security deposits for a 2BHK are ₹1.5–2.5 lakh (6–10 months rent). When tenancies end, 68% of deposit disputes escalate to Rent Control Court, taking an average of 14 months to resolve. Most common disputes: deductions for painting/cleaning (claimed by 82%, disputed by 71%), fixture damages, and alleged unpaid utility bills.
+
+A proptech startup wants an Online Dispute Resolution (ODR) platform that resolves deposit disputes in under 30 days without court involvement. Currently, no such platform exists in India, and the startup's pilot with a 2,000-unit apartment management company in Whitefield is 8 weeks away.
+Your Challenge
+
+Build a working prototype of an ODR platform handling the full lifecycle of a single deposit dispute: 1. Intake (separate interfaces for tenant & landlord), 2. Evidence Evaluation (structured manual entry fields for damage photos, agreements, bills), 3. Automated Calculation (applying Karnataka Rent Control Act provisions: 10% annual depreciation cap on fixtures, 1-month notice rule, wear-and-tear prohibition), 4. Negotiation (structured counteroffers with gap visualizer, max 3 rounds), 5. Settlement (auto-generated PDF with digital consent when gap <= 5%).
+Constraints & Requirements
+
+    Rule engine must correctly handle at least 5 deduction categories: painting, fixtures, utilities, unpaid rent, cleaning.
+    Negotiation interface must enforce max 3 rounds of counteroffers before escalating to mediator review.
+    Settlement PDF must include computed breakdown, both parties' names, property address, and digital timestamp.
+    The demo must walk through one complete dispute from intake to settlement in under 5 minutes.
+    Note: Computer vision/OCR is NOT required. Structured form fields for evidence data are explicitly permitted.
+
+Data & Sourcing
+
+No data or legal templates provided. Teams research the Karnataka Rent Control Act provisions (available on indiacode.nic.in) and prepare 2–3 realistic dispute scenarios for the demo.
+Judging Criteria
+Evaluation Criterion 	Weight
+Legal accuracy and completeness of rule engine 	30%
+UX quality of the dual-party workflow (intake, negotiation) 	25%
+Robustness of the negotiation state machine 	20%
+Quality and legal formatting of generated settlement PDF 	15%
+Creativity in evidence evaluation workflow 	10%
+
+
+PROBLEM 04 // HEALTHCARE IOT — Healthcare Logistics / Mobile-First IoT
+The Cold Chain Handshake
+✕
+The Situation & Problem
+
+A state health department distributes 2–8°C vaccines to 1,400 Primary Health Centres (PHCs). The last mile (district cold room to PHC by two-wheelers over 15–40 km of rural roads) is unmonitored. In the last fiscal year, 6.2% of vaccine vials (worth ₹4.8 crore) were discarded due to suspected heat exposure, but the department cannot pinpoint where breaches occurred.
+
+The department procured 500 low-cost Bluetooth temperature loggers (logging every 2 minutes), but lacks a mobile handover protocol that pairs loggers at dispatch, tracks temperature on field worker phones through intermittent cellular connectivity, escalates temperature breaches, and executes digital handovers at arrival.
+Your Challenge
+
+Build a mobile-first last-mile handover application implementing the chain-of-custody protocol: 1. Dispatch (cold room operator scans QR, pairs logger stream, logs starting conditions), 2. Transit (continuous temperature logging, buffering locally during 10–20 min connection dropouts without timestamp loss), 3. Alert Escalation (tiered alert if temp >8°C for >5 cumulative mins: worker -> supervisor -> pharmacist), 4. Handover (pharmacist scans QR, views trajectory & pass/fail verdict, both digitally sign; replacement workflow on failure).
+Constraints & Requirements
+
+    App must be functional on a physical Android device, high-fidelity emulator, or convincing web simulator with offline buffering.
+    The temperature log must be tamper-evident: once recorded, it cannot be modified (hash chain or append-only log).
+    Complete handover cycle must be demonstrable in under 4 minutes.
+    Teams simulate the Bluetooth logger stream (baseline 4–6°C, occasional spikes to 9–11°C during sun exposure).
+
+Data & Sourcing
+
+No data or starter code provided. Teams write a simple script or stream simulator emitting temperature readings every 2 minutes with simulated 10-minute network dropouts.
+Judging Criteria
+Evaluation Criterion 	Weight
+Robustness of offline-first data handling (buffering, sync) 	30%
+Completeness & clarity of chain-of-custody workflow 	25%
+Alert escalation logic (correct tiering, no false alerts) 	20%
+Tamper-evidence mechanism for temperature log 	15%
+Mobile UX quality under field conditions 	10%
+
+
+PROBLEM 05 // ENERGY ECONOMICS — Energy Economics & Grid Management
+The Microgrid Clearinghouse
+✕
+The Situation & Problem
+
+A gated residential township of 600 households in Tamil Nadu has 180 rooftop solar prosumers. During peak hours (10 AM–2 PM), they generate 1.8 MW surplus exported at ₹2.50/kWh, while 420 households import power at ₹7.20/kWh. A pilot license allows P2P trading so prosumers earn ₹5.00/kWh and consumers pay ₹5.00/kWh.
+
+The pilot must settle energy trades in 15-minute blocks within ~3 minutes under 3 non-negotiable constraints: 1. Local transformer capacity capped at 2.5 MW; 2. No single prosumer can sell >80% of their generation in any block; 3. Settlement price must be a single clearing price per block. Intermittent cloud cover can suddenly drop solar supply by 30%.
+Your Challenge
+
+Build a P2P energy settlement engine with an integrated simulator demonstrating 24 hours of continuous market operation: 1. Simulate realistic profiles for 180 prosumers and 420 consumers, 2. Clear a single market price per block maximizing energy traded within all 3 constraints, 3. Handle imbalances transparently when committed generation drops, 4. Visualize 24 hours on a live dashboard showing prices, energy traded, transformer load, and penalties.
+Constraints & Requirements
+
+    Settlement engine must process each 15-minute block in under 10 seconds.
+    Single-clearing-price mechanism must be explicitly justified (uniform price auction, merit-order dispatch, etc.).
+    Accelerated demo: show 24 simulated hours running at ~1 block every 2 seconds (96 blocks in ~3 min) with a stable, crash-free dashboard UI.
+    Zero transformer overloads and zero 80%-rule violations across 24 hours.
+    Chaos resilience: Judges may inject an unannounced 'cloud storm' (60% generation crash for 4 consecutive blocks).
+
+Data & Sourcing
+
+No dataset provided. Teams generate synthetic profiles: Solar sinusoidal curve peaking at 10 kW/prosumer at 12:30 PM with Gaussian noise and 2–3 cloud events; Consumer demand base 0.5 kW with morning (2.5 kW) and evening (3.5 kW) peaks.
+Judging Criteria
+Evaluation Criterion 	Weight
+Economic efficiency: total energy traded vs theoretical maximum 	25%
+Constraint compliance: zero transformer & 80%-rule violations 	25%
+Imbalance handling: transparency & fairness of penalty allocation 	20%
+Computational performance & UI stability at accelerated speed 	15%
+Mechanism design justification and dashboard clarity 	15%

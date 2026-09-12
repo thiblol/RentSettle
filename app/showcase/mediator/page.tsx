@@ -4,6 +4,7 @@ import { whitefield2BHK } from '@/lib/scenarios/whitefield-2bhk';
 import { CITATIONS } from '@/lib/rules/citations';
 import { formatRupees } from '@/lib/money';
 import { RoleBadge } from '@/components/RoleBadge';
+import { PdfSettlement } from '@/components/PdfSettlement';
 import Link from 'next/link';
 
 type Verdict = 'tenant' | 'landlord' | 'force';
@@ -90,8 +91,19 @@ export default function MediatorShowcase() {
   const [verdict, setVerdict] = useState<Verdict | null>(null);
   const [forceAmount, setForceAmount] = useState(MIDPOINT);
 
-  const caseId = whitefield2BHK.id;
   const { case: caseData, escalationData } = whitefield2BHK;
+
+  const settlementAmount =
+    verdict === 'tenant' ? TENANT_FINAL :
+    verdict === 'landlord' ? LANDLORD_FINAL :
+    forceAmount;
+
+  const pdfDeductions = deductions.map(d => ({
+    category: d.category as 'painting' | 'fixtures' | 'utilities' | 'unpaid_rent' | 'cleaning',
+    amountAllowed: d.amount,
+    reasoning: d.description,
+    citedAuthority: CITATIONS[d.citationKey].short,
+  }));
 
   return (
     <main className="mx-auto max-w-content px-8 py-24 animate-fadeIn">
@@ -139,10 +151,7 @@ export default function MediatorShowcase() {
                     <div className="text-sm font-medium text-ink">{d.label}</div>
                     <div className="mt-0.5 text-xs text-mute">{d.description}</div>
                     <div className="mt-1 font-mono text-[10px] uppercase tracking-widest text-mute/70">
-                      {CITATIONS[d.citationKey].short.split('§')[0].trim()}
-                      {CITATIONS[d.citationKey].short.includes('§')
-                        ? ' §' + CITATIONS[d.citationKey].short.split('§').slice(1).join('§')
-                        : ''}
+                      {CITATIONS[d.citationKey].short}
                     </div>
                   </div>
                   <div className="flex flex-col items-end gap-1 shrink-0">
@@ -311,15 +320,25 @@ export default function MediatorShowcase() {
         {verdict && (
           <>
             <div className="mt-8 border-t border-line pt-4 text-center font-mono text-[11px] uppercase tracking-widest text-saffron">
-              ✓ Verdict recorded · Both parties notified · Settlement PDF generated
+              ✓ Verdict recorded · Both parties notified · Settlement PDF ready
             </div>
-            <div className="mt-6 text-center">
+            <div className="mt-6 flex flex-col items-center gap-3">
+              <PdfSettlement
+                case={{
+                  tenantName: caseData.tenantName,
+                  landlordName: caseData.landlordName,
+                  propertyAddress: caseData.propertyAddress,
+                  depositAmount: DEPOSIT,
+                }}
+                deductions={pdfDeductions}
+                settlementAmount={settlementAmount}
+                settlementTimestamp={escalationData.escalatedAt}
+              />
               <Link
-                href={`/c/${caseId}/settle`}
-                className="inline-flex items-center gap-2 rounded-lg border border-saffron/30 bg-saffron/5 px-5 py-3 font-mono text-xs uppercase tracking-widest text-saffron transition-colors hover:bg-saffron/10"
+                href="/"
+                className="font-mono text-[11px] uppercase tracking-widest text-mute underline decoration-line decoration-1 underline-offset-4 hover:text-ink"
               >
-                View settlement
-                <span>→</span>
+                ← Back to scenarios
               </Link>
             </div>
           </>

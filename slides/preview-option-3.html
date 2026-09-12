@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RentSettle — Preview 3 of 5</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏠</text></svg>">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --font-display: 'Bricolage Grotesque', system-ui, sans-serif;
+    --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --bg: #fff8f0;
+    --ink: #1a0e00;
+    --orange: #e85d04;
+    --orange-light: #fff0e0;
+    --indigo: #3730a3;
+    --indigo-light: #eef0ff;
+    --muted: #78716c;
+    --border: #e8ddd0;
+    --green: #16a34a;
+    --green-light: #f0fdf4;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--ink);
+    overflow: hidden;
+  }
+
+  .slide {
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 8vw;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ── SLIDE 1: Title ── */
+  .slide-title { display: flex; }
+
+  .eyebrow {
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 1.2rem;
+    animation: fadeUp 0.7s ease-out both;
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 7vw, 6.5rem);
+    font-weight: 800;
+    line-height: 0.95;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+    max-width: 760px;
+    animation: fadeUp 0.7s ease-out 0.1s both;
+  }
+
+  h1 .hl {
+    color: var(--orange);
+    position: relative;
+    display: inline-block;
+  }
+
+  h1 .hl::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--orange);
+    border-radius: 2px;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--muted);
+    max-width: 520px;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.7s ease-out 0.2s both;
+  }
+
+  .pill-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.7s ease-out 0.3s both;
+  }
+
+  .pill {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 20px;
+    background: var(--orange-light);
+    color: var(--orange);
+    border: 1.5px solid rgba(232,93,4,0.2);
+  }
+
+  .tag-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--ink);
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 6px;
+    animation: fadeUp 0.7s ease-out 0.4s both;
+  }
+
+  .tag-badge .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--orange);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  /* ── SLIDE 2: Problem ── */
+  .slide-problem {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5vw;
+    align-items: center;
+  }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.2rem;
+  }
+
+  .section-label .line {
+    width: 24px;
+    height: 2px;
+    background: var(--orange);
+    border-radius: 1px;
+  }
+
+  .problem-col h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+
+  .impact-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .impact-card {
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+
+  .impact-card .icon-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: var(--orange-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .impact-card .impact-num {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--orange);
+    line-height: 1;
+  }
+
+  .impact-card .impact-desc {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.3;
+  }
+
+  .problem-right-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .pain-card {
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+  }
+
+  .pain-card .pain-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--orange);
+    margin-bottom: 6px;
+  }
+
+  .pain-card .pain-text {
+    font-size: 0.88rem;
+    color: var(--ink);
+    line-height: 1.4;
+  }
+
+  /* ── SLIDE 3: Demo ── */
+  .slide-demo {
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+  }
+
+  .slide-demo h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 800;
+    color: var(--ink);
+    max-width: 700px;
+    line-height: 1.05;
+  }
+
+  .slide-demo .demo-subtitle {
+    font-size: 0.95rem;
+    color: var(--muted);
+    max-width: 480px;
+    line-height: 1.5;
+  }
+
+  .video-placeholder {
+    width: 72vw;
+    max-width: 900px;
+    aspect-ratio: 16/9;
+    border-radius: 18px;
+    border: 3px dashed var(--orange);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: white;
+  }
+
+  .play-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--orange);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    color: white;
+  }
+
+  .vp-label {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .vp-hint {
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .nav-dots {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 100;
+  }
+  .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--border);
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .dot.active { background: var(--orange); }
+
+  .slide-counter {
+    position: fixed;
+    bottom: 24px;
+    right: 32px;
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+
+  .nav-hint {
+    position: fixed;
+    top: 24px;
+    right: 32px;
+    font-size: 0.68rem;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1 -->
+<div class="slide slide-title active">
+  <div class="eyebrow">Deposit War Room · ODR Platform</div>
+  <h1>Resolve deposit disputes in <span class="hl">minutes</span>, not 14 months of court.</h1>
+  <p class="subtitle">A working ODR platform for Bangalore tenants and landlords. Built on Karnataka's actual rent laws — the rule engine shows which statute decided every deduction.</p>
+  <div class="pill-row">
+    <span class="pill">Karnataka Rent Act</span>
+    <span class="pill">Next.js 14</span>
+    <span class="pill">Rule Engine</span>
+    <span class="pill">Gap Visualizer</span>
+  </div>
+  <div class="tag-badge">
+    <div class="dot"></div>
+    Live Demo · Whitefield 2BHK — ₹2L Deposit
+  </div>
+</div>
+
+<!-- SLIDE 2 -->
+<div class="slide slide-problem">
+  <div class="problem-col">
+    <div class="section-label"><span class="line"></span>The Problem</div>
+    <h2>Bangalore renters lose ₹1.5–2.5 lakh every month.</h2>
+    <div class="impact-stats">
+      <div class="impact-card">
+        <div class="icon-box">⚖️</div>
+        <div>
+          <div class="impact-num">68%</div>
+          <div class="impact-desc">of disputes escalate to court</div>
+        </div>
+      </div>
+      <div class="impact-card">
+        <div class="icon-box">⏱️</div>
+        <div>
+          <div class="impact-num">14 mo</div>
+          <div class="impact-desc">average Rent Control resolution time</div>
+        </div>
+      </div>
+      <div class="impact-card">
+        <div class="icon-box">🏠</div>
+        <div>
+          <div class="impact-num">₹2L</div>
+          <div class="impact-desc">average deposit frozen in legal limbo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="problem-right-cards">
+    <div class="section-label"><span class="line"></span>Why landlords lose too</div>
+    <div class="pain-card">
+      <div class="pain-label">Landlords can't prove deductions</div>
+      <div class="pain-text">Without documented evidence linked to specific legal rules, courts deny legitimate deduction claims.</div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-label">Tenants can't fight bad claims</div>
+      <div class="pain-text">Without knowing which law applies, tenants can't counter a painted-wall charge with the wear-and-tear exclusion.</div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-label">Proptech pilots launching in 8 weeks</div>
+      <div class="pain-text">A 2,000-unit Whitefield pilot has no ODR platform in India to deploy on.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 3 -->
+<div class="slide slide-demo">
+  <div class="eyebrow">Live Demo</div>
+  <h2>Watch one dispute go from<br>intake to settlement in 3 minutes.</h2>
+  <p class="demo-subtitle">Tenant portal → Landlord portal → Rule engine → Negotiation → Settlement PDF</p>
+  <div class="video-placeholder">
+    <div class="play-icon">▶</div>
+    <span class="vp-label">Whitefield 2BHK — ₹2L Deposit</span>
+    <span class="vp-hint">scenario loads → tenant intake → landlord counter → rule engine → gap visualizer → PDF</span>
+  </div>
+</div>
+
+<div class="nav-dots">
+  <div class="dot active" onclick="showSlide(0)"></div>
+  <div class="dot" onclick="showSlide(1)"></div>
+  <div class="dot" onclick="showSlide(2)"></div>
+</div>
+<div class="slide-counter">1 / 3</div>
+<div class="nav-hint">← → to navigate</div>
+
+<script>
+  let current = 0;
+  const slides = document.querySelectorAll('.slide');
+  const dots = document.querySelectorAll('.dot');
+  function showSlide(i) {
+    slides.forEach(s => s.style.display = 'none');
+    dots.forEach(d => d.classList.remove('active'));
+    slides[i].style.display = 'flex';
+    dots[i].classList.add('active');
+    document.querySelector('.slide-counter').textContent = (i+1) + ' / ' + slides.length;
+    current = i;
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ') showSlide((current+1)%slides.length);
+    if (e.key === 'ArrowLeft') showSlide((current-1+slides.length)%slides.length);
+  });
+  showSlide(0);
+</script>
+</body>
+</html>

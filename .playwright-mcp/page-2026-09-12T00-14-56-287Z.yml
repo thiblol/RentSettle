@@ -1,0 +1,79 @@
+- generic [active] [ref=f4e1]:
+  - generic [ref=f4e2]:
+    - banner [ref=f4e3]:
+      - generic [ref=f4e4]:
+        - generic [ref=f4e5]:
+          - link "RentSettle" [ref=f4e6] [cursor=pointer]:
+            - /url: /
+          - generic [ref=f4e7]: / case
+        - generic [ref=f4e8]:
+          - generic [ref=f4e9]: Priya Sharma vs Rajesh Iyer
+          - generic [ref=f4e10]: Prestige Shantiniketan, Whitefield, Bangalore — Tower 4, Flat 1207
+    - main [ref=f4e11]:
+      - generic [ref=f4e12]:
+        - generic [ref=f4e13]:
+          - generic [ref=f4e14]:
+            - generic [ref=f4e15]: 04 · Negotiate
+            - heading "Close the gap." [level=1] [ref=f4e16]
+          - button "↻ reset to demo data" [ref=f4e17] [cursor=pointer]
+        - navigation [ref=f4e19]:
+          - link "01 Tenant" [ref=f4e20] [cursor=pointer]:
+            - /url: /c/b4855a1d-cf90-4504-ac43-8b1d699e2861/tenant/intake
+            - generic [ref=f4e21]: "01"
+            - generic [ref=f4e22]: Tenant
+          - link "02 Landlord" [ref=f4e23] [cursor=pointer]:
+            - /url: /c/b4855a1d-cf90-4504-ac43-8b1d699e2861/landlord/intake
+            - generic [ref=f4e24]: "02"
+            - generic [ref=f4e25]: Landlord
+          - link "03 Calculation" [ref=f4e26] [cursor=pointer]:
+            - /url: /c/b4855a1d-cf90-4504-ac43-8b1d699e2861/calc
+            - generic [ref=f4e27]: "03"
+            - generic [ref=f4e28]: Calculation
+          - link "04 Negotiate" [ref=f4e29] [cursor=pointer]:
+            - /url: /c/b4855a1d-cf90-4504-ac43-8b1d699e2861/negotiate
+            - generic [ref=f4e30]: "04"
+            - generic [ref=f4e31]: Negotiate
+          - link "05 Settle" [ref=f4e33] [cursor=pointer]:
+            - /url: /c/b4855a1d-cf90-4504-ac43-8b1d699e2861/settle
+            - generic [ref=f4e34]: "05"
+            - generic [ref=f4e35]: Settle
+        - generic [ref=f4e36]:
+          - generic [ref=f4e37]: Round 1 of 3
+          - generic [ref=f4e38]: Auto-settle when gap ≤ 5%
+        - generic [ref=f4e40]:
+          - generic [ref=f4e41]:
+            - text: OPEN →
+            - generic [ref=f4e42]:
+              - generic [ref=f4e43]: ROUND 1
+              - text: →
+            - generic [ref=f4e44]:
+              - generic [ref=f4e45]: ROUND 2
+              - text: →
+            - generic [ref=f4e46]:
+              - generic [ref=f4e47]: ROUND 3
+              - text: →
+            - text: OPEN
+          - generic [ref=f4e49]:
+            - generic [ref=f4e50]: Tenant wants back
+            - generic [ref=f4e51]: —
+          - generic [ref=f4e54]:
+            - generic [ref=f4e55]: Landlord will release
+            - generic [ref=f4e56]: —
+        - generic [ref=f4e58]:
+          - generic [ref=f4e59]:
+            - generic [ref=f4e60]: Tenant view
+            - generic [ref=f4e63]:
+              - text: Tenant offer (Rs)
+              - spinbutton [ref=f4e64]: "500"
+              - button "Submit offer" [ref=f4e65] [cursor=pointer]
+          - generic [ref=f4e66]:
+            - generic [ref=f4e67]: Landlord view
+            - generic [ref=f4e70]:
+              - text: Landlord offer (Rs)
+              - spinbutton [ref=f4e71]: "500"
+              - button "Submit offer" [ref=f4e72] [cursor=pointer]
+        - generic [ref=f4e73]:
+          - generic [ref=f4e74]: Activity
+          - list [ref=f4e77]:
+            - listitem [ref=f4e78]: No offers yet — both parties can begin below.
+  - alert [ref=f4e79]

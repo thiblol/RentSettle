@@ -14,14 +14,24 @@ export default async function NegotiatePage({ params }: { params: { caseId: stri
 
   if (!n || n.status === 'settled' || n.status === 'escalated') {
     return (
-      <div>
-        <p className="text-mute">
-          This case is {n?.status ?? 'open'}.
-          {' '}
-          <a href={`/c/${c.id}/settle`} className="text-ink underline decoration-saffron decoration-2 underline-offset-4">
+      <div className="py-12 text-center">
+        <div className="mb-4 text-[11px] font-semibold uppercase tracking-widest text-mute">
+          {n?.status === 'escalated' ? 'Escalated to mediator' : 'Case settled'}
+        </div>
+        <p className="mb-8 font-display text-2xl italic text-ink">
+          {n?.status === 'escalated'
+            ? 'Both parties agreed to mediation.'
+            : 'Both parties reached an agreement.'}
+        </p>
+        <div className="flex items-center justify-center gap-4">
+          <a
+            href={`/c/${c.id}/settle`}
+            className="rounded-lg border border-ink bg-ink px-6 py-3 font-mono text-xs uppercase tracking-widest text-paper transition-all hover:border-saffron hover:bg-saffron"
+          >
             View settlement →
           </a>
-        </p>
+          <ResetButton caseId={c.id} />
+        </div>
       </div>
     );
   }

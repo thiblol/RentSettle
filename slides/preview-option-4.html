@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RentSettle — Preview 4 of 5</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏠</text></svg>">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap');
+
+  :root {
+    --font-display: 'Manrope', system-ui, sans-serif;
+    --font-body: 'Manrope', system-ui, sans-serif;
+    --bg: #0f1729;
+    --bg-2: #162035;
+    --bg-3: #1e2a44;
+    --saffron: #fbbf24;
+    --saffron-glow: rgba(251,191,36,0.15);
+    --indigo: #818cf8;
+    --text: #f8fafc;
+    --text-2: rgba(248,250,252,0.6);
+    --text-3: rgba(248,250,252,0.35);
+    --border: rgba(255,255,255,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text);
+    overflow: hidden;
+  }
+
+  .slide {
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 10vw;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* mesh gradient bg */
+  .slide::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 70% 40%, rgba(251,191,36,0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 60% at 20% 70%, rgba(129,140,248,0.07) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .slide > * { position: relative; z-index: 1; }
+
+  /* ── SLIDE 1: Title ── */
+  .slide-title { display: flex; }
+
+  .eyebrow {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--saffron);
+    margin-bottom: 1.5rem;
+    opacity: 0.85;
+    animation: fadeUp 0.7s ease-out both;
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 800;
+    line-height: 1.02;
+    color: var(--text);
+    max-width: 720px;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.7s ease-out 0.1s both;
+  }
+
+  h1 .accent { color: var(--saffron); }
+
+  .subtitle {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: var(--text-2);
+    max-width: 520px;
+    margin-bottom: 2rem;
+    font-weight: 300;
+    animation: fadeUp 0.7s ease-out 0.2s both;
+  }
+
+  .subtitle .hl { color: var(--saffron); font-weight: 600; }
+
+  .pill-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.7s ease-out 0.3s both;
+  }
+
+  .pill {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 4px;
+    background: var(--saffron-glow);
+    border: 1px solid rgba(251,191,36,0.25);
+    color: var(--saffron);
+    letter-spacing: 0.05em;
+  }
+
+  .live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--bg-3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 18px;
+    width: fit-content;
+    animation: fadeUp 0.7s ease-out 0.4s both;
+  }
+
+  .live-badge .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--saffron);
+    box-shadow: 0 0 8px var(--saffron);
+    animation: glow 2s ease-in-out infinite;
+  }
+
+  .live-badge span {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── SLIDE 2: Problem ── */
+  .slide-problem {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6vw;
+    align-items: center;
+  }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--saffron);
+    opacity: 0.8;
+    margin-bottom: 1.2rem;
+  }
+
+  .section-label .line {
+    width: 24px;
+    height: 1.5px;
+    background: var(--saffron);
+    opacity: 0.6;
+  }
+
+  .problem-col h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.7rem, 3vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+  }
+
+  .problem-col .quote-text {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--text-2);
+    border-left: 2px solid rgba(251,191,36,0.4);
+    padding-left: 1rem;
+    margin-bottom: 1.2rem;
+    font-weight: 300;
+  }
+
+  .stats-col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .stat-card {
+    background: var(--bg-3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .stat-card .stat-val {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--saffron);
+    line-height: 1;
+    min-width: 110px;
+  }
+
+  .stat-card .stat-info {
+    flex: 1;
+  }
+
+  .stat-card .stat-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 3px;
+  }
+
+  .stat-card .stat-sub {
+    font-size: 0.75rem;
+    color: var(--text-3);
+    line-height: 1.3;
+  }
+
+  .stat-card.highlight {
+    border-color: rgba(251,191,36,0.3);
+    background: linear-gradient(135deg, rgba(251,191,36,0.05) 0%, var(--bg-3) 100%);
+  }
+
+  /* ── SLIDE 3: Demo ── */
+  .slide-demo {
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+  }
+
+  .slide-demo h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 4.5vw, 4rem);
+    font-weight: 800;
+    color: var(--text);
+    max-width: 700px;
+    line-height: 1.05;
+  }
+
+  .slide-demo .demo-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-2);
+    max-width: 460px;
+    line-height: 1.5;
+    font-weight: 300;
+  }
+
+  .video-placeholder {
+    width: 72vw;
+    max-width: 900px;
+    aspect-ratio: 16/9;
+    border-radius: 14px;
+    border: 1.5px solid rgba(251,191,36,0.3);
+    background: var(--bg-3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .play-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--saffron);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: var(--bg);
+    box-shadow: 0 0 24px rgba(251,191,36,0.4);
+  }
+
+  .vp-label {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .vp-hint {
+    font-size: 0.7rem;
+    color: var(--text-3);
+    letter-spacing: 0.04em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes glow {
+    0%, 100% { box-shadow: 0 0 8px var(--saffron); }
+    50% { box-shadow: 0 0 20px var(--saffron); }
+  }
+
+  .nav-dots {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 100;
+  }
+  .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    cursor: pointer;
+  }
+  .dot.active { background: var(--saffron); }
+
+  .slide-counter {
+    position: fixed;
+    bottom: 24px;
+    right: 32px;
+    font-size: 0.72rem;
+    color: var(--text-3);
+    letter-spacing: 0.08em;
+  }
+
+  .nav-hint {
+    position: fixed;
+    top: 24px;
+    right: 32px;
+    font-size: 0.68rem;
+    color: var(--text-3);
+    letter-spacing: 0.06em;
+  }
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1 -->
+<div class="slide slide-title active">
+  <div class="eyebrow">ODR Platform · Deposit War Room</div>
+  <h1>Deposit disputes, resolved in <span class="accent">minutes</span> — not 14 months of court.</h1>
+  <p class="subtitle">A working ODR platform for Bangalore tenants and landlords. Built on Karnataka's actual rent laws — the rule engine shows <span class="hl">which statute</span> decided every deduction.</p>
+  <div class="pill-row">
+    <span class="pill">Karnataka Rent Act</span>
+    <span class="pill">Next.js 14</span>
+    <span class="pill">Rule Engine</span>
+    <span class="pill">Gap Visualizer</span>
+  </div>
+  <div class="live-badge">
+    <div class="dot"></div>
+    <span>Live Demo · Whitefield 2BHK — ₹2L Deposit</span>
+  </div>
+</div>
+
+<!-- SLIDE 2 -->
+<div class="slide slide-problem">
+  <div class="problem-col">
+    <div class="section-label"><span class="line"></span>The Problem</div>
+    <h2>Bangalore renters lose ₹1.5–2.5 lakh every month.</h2>
+    <p class="quote-text">68% of security deposit disputes escalate to Rent Control Court. Average resolution takes 14 months — leaving renters' deposits frozen in legal limbo.</p>
+    <p class="quote-text">A 2,000-unit Whitefield proptech pilot is launching in 8 weeks with no ODR platform in India to deploy.</p>
+  </div>
+  <div class="stats-col">
+    <div class="section-label"><span class="line"></span>Impact by the numbers</div>
+    <div class="stat-card highlight">
+      <div class="stat-val">68%</div>
+      <div class="stat-info">
+        <div class="stat-name">Court escalation rate</div>
+        <div class="stat-sub">of security deposit disputes</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-val">14 mo</div>
+      <div class="stat-info">
+        <div class="stat-name">Average resolution time</div>
+        <div class="stat-sub">Rent Control Court, Bangalore</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-val">₹2L</div>
+      <div class="stat-info">
+        <div class="stat-name">Average deposit at stake</div>
+        <div class="stat-sub">Frozen during dispute</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-val">0</div>
+      <div class="stat-info">
+        <div class="stat-name">ODR platforms in India</div>
+        <div class="stat-sub">Available for residential deposits</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 3 -->
+<div class="slide slide-demo">
+  <div class="eyebrow">Live Demo</div>
+  <h2>Watch one dispute go from<br>intake to settlement in 3 minutes.</h2>
+  <p class="demo-subtitle">Tenant portal → Landlord portal → Rule engine → Negotiation → Settlement PDF</p>
+  <div class="video-placeholder">
+    <div class="play-icon">▶</div>
+    <span class="vp-label">Whitefield 2BHK — ₹2L Deposit</span>
+    <span class="vp-hint">scenario loads → tenant intake → landlord counter → rule engine → gap visualizer → PDF</span>
+  </div>
+</div>
+
+<div class="nav-dots">
+  <div class="dot active" onclick="showSlide(0)"></div>
+  <div class="dot" onclick="showSlide(1)"></div>
+  <div class="dot" onclick="showSlide(2)"></div>
+</div>
+<div class="slide-counter">1 / 3</div>
+<div class="nav-hint">← → to navigate</div>
+
+<script>
+  let current = 0;
+  const slides = document.querySelectorAll('.slide');
+  const dots = document.querySelectorAll('.dot');
+  function showSlide(i) {
+    slides.forEach(s => s.style.display = 'none');
+    dots.forEach(d => d.classList.remove('active'));
+    slides[i].style.display = 'flex';
+    dots[i].classList.add('active');
+    document.querySelector('.slide-counter').textContent = (i+1) + ' / ' + slides.length;
+    current = i;
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ') showSlide((current+1)%slides.length);
+    if (e.key === 'ArrowLeft') showSlide((current-1+slides.length)%slides.length);
+  });
+  showSlide(0);
+</script>
+</body>
+</html>

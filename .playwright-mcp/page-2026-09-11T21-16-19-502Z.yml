@@ -1,0 +1,96 @@
+- generic [active] [ref=f1e1]:
+  - alert [ref=f1e34]
+  - generic [ref=f1e35]:
+    - banner [ref=f1e36]:
+      - generic [ref=f1e37]:
+        - generic [ref=f1e38]:
+          - link "RentSettle" [ref=f1e39] [cursor=pointer]:
+            - /url: /
+          - generic [ref=f1e40]: / case
+        - generic [ref=f1e41]:
+          - generic [ref=f1e42]: Priya Sharma vs Rajesh Iyer
+          - generic [ref=f1e43]: Prestige Shantiniketan, Whitefield, Bangalore — Tower 4, Flat 1207
+    - main [ref=f1e44]:
+      - generic [ref=f1e117]:
+        - generic [ref=f1e118]:
+          - generic [ref=f1e119]:
+            - generic [ref=f1e120]: 02 · Your claims
+            - heading "Landlord intake." [level=1] [ref=f1e121]
+            - paragraph [ref=f1e122]: State your deductions and evidence. Pre-filled for the demo — adjust as needed.
+          - button "↻ reset to demo data" [ref=f1e123] [cursor=pointer]
+        - generic [ref=f1e124]: Landlord view
+        - navigation [ref=f1e128]:
+          - link "01 Tenant" [ref=f1e129] [cursor=pointer]:
+            - /url: /c/cb8ef17f-47ca-4478-bc5e-a17696aff5a9/tenant/intake
+            - generic [ref=f1e130]: "01"
+            - generic [ref=f1e131]: Tenant
+          - link "02 Landlord" [ref=f1e132] [cursor=pointer]:
+            - /url: /c/cb8ef17f-47ca-4478-bc5e-a17696aff5a9/landlord/intake
+            - generic [ref=f1e133]: "02"
+            - generic [ref=f1e134]: Landlord
+          - link "03 Calculation" [ref=f1e136] [cursor=pointer]:
+            - /url: /c/cb8ef17f-47ca-4478-bc5e-a17696aff5a9/calc
+            - generic [ref=f1e137]: "03"
+            - generic [ref=f1e138]: Calculation
+          - link "04 Negotiate" [ref=f1e139] [cursor=pointer]:
+            - /url: /c/cb8ef17f-47ca-4478-bc5e-a17696aff5a9/negotiate
+            - generic [ref=f1e140]: "04"
+            - generic [ref=f1e141]: Negotiate
+          - link "05 Settle" [ref=f1e142] [cursor=pointer]:
+            - /url: /c/cb8ef17f-47ca-4478-bc5e-a17696aff5a9/settle
+            - generic [ref=f1e143]: "05"
+            - generic [ref=f1e144]: Settle
+        - generic [ref=f1e145]:
+          - generic [ref=f1e146]:
+            - generic [ref=f1e147]:
+              - generic [ref=f1e148]: Painting
+              - generic [ref=f1e149]: amount to deduct
+            - generic [ref=f1e150]:
+              - generic [ref=f1e151]: ₹
+              - spinbutton [ref=f1e152]: "35000"
+            - generic [ref=f1e153]:
+              - checkbox "I have evidence (bills, photos, receipts)" [ref=f1e154]
+              - generic [ref=f1e155]: I have evidence (bills, photos, receipts)
+          - generic [ref=f1e156]:
+            - generic [ref=f1e157]:
+              - generic [ref=f1e158]: Fixtures & fittings
+              - generic [ref=f1e159]: amount to deduct
+            - generic [ref=f1e160]:
+              - generic [ref=f1e161]: ₹
+              - spinbutton [ref=f1e162]: "18000"
+            - generic [ref=f1e163]:
+              - checkbox "I have evidence (bills, photos, receipts)" [checked] [ref=f1e164]
+              - generic [ref=f1e165]: I have evidence (bills, photos, receipts)
+          - generic [ref=f1e166]:
+            - generic [ref=f1e167]:
+              - generic [ref=f1e168]: Utilities (electricity, water)
+              - generic [ref=f1e169]: amount to deduct
+            - generic [ref=f1e170]:
+              - generic [ref=f1e171]: ₹
+              - spinbutton [ref=f1e172]: "4500"
+            - generic [ref=f1e173]:
+              - checkbox "I have evidence (bills, photos, receipts)" [checked] [ref=f1e174]
+              - generic [ref=f1e175]: I have evidence (bills, photos, receipts)
+          - generic [ref=f1e176]:
+            - generic [ref=f1e177]:
+              - generic [ref=f1e178]: Unpaid rent
+              - generic [ref=f1e179]: amount to deduct
+            - generic [ref=f1e180]:
+              - generic [ref=f1e181]: ₹
+              - spinbutton [ref=f1e182]: "0"
+            - generic [ref=f1e183]:
+              - checkbox "I have evidence (bills, photos, receipts)" [ref=f1e184]
+              - generic [ref=f1e185]: I have evidence (bills, photos, receipts)
+          - generic [ref=f1e186]:
+            - generic [ref=f1e187]:
+              - generic [ref=f1e188]: Cleaning
+              - generic [ref=f1e189]: amount to deduct
+            - generic [ref=f1e190]:
+              - generic [ref=f1e191]: ₹
+              - spinbutton [ref=f1e192]: "12000"
+            - generic [ref=f1e193]:
+              - checkbox "I have evidence (bills, photos, receipts)" [ref=f1e194]
+              - generic [ref=f1e195]: I have evidence (bills, photos, receipts)
+          - button "Run rule engine →" [ref=f1e196] [cursor=pointer]:
+            - generic [ref=f1e197]: Run rule engine
+            - generic [ref=f1e198]: →

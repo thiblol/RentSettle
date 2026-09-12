@@ -1,0 +1,86 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - generic [ref=e5]:
+          - link "RentSettle" [ref=e6] [cursor=pointer]:
+            - /url: /
+          - generic [ref=e7]: / case
+        - generic [ref=e8]:
+          - generic [ref=e9]: Priya Sharma vs Rajesh Iyer
+          - generic [ref=e10]: Prestige Shantiniketan, Whitefield, Bangalore — Tower 4, Flat 1207
+    - main [ref=e11]:
+      - generic [ref=e12]:
+        - generic [ref=e13]:
+          - generic [ref=e14]:
+            - generic [ref=e15]: 01 · Your side
+            - heading "Tenant intake." [level=1] [ref=e16]
+            - paragraph [ref=e17]: For each deduction the landlord is making, share your response. Pre-filled for the demo — adjust anything.
+          - button "↻ reset to demo data" [ref=e18] [cursor=pointer]
+        - generic [ref=e19]: Tenant view
+        - navigation [ref=e23]:
+          - link "01 Tenant" [ref=e24] [cursor=pointer]:
+            - /url: /c/b4855a1d-cf90-4504-ac43-8b1d699e2861/tenant/intake
+            - generic [ref=e25]: "01"
+            - generic [ref=e26]: Tenant
+          - link "02 Landlord" [ref=e28] [cursor=pointer]:
+            - /url: /c/b4855a1d-cf90-4504-ac43-8b1d699e2861/landlord/intake
+            - generic [ref=e29]: "02"
+            - generic [ref=e30]: Landlord
+          - link "03 Calculation" [ref=e31] [cursor=pointer]:
+            - /url: /c/b4855a1d-cf90-4504-ac43-8b1d699e2861/calc
+            - generic [ref=e32]: "03"
+            - generic [ref=e33]: Calculation
+          - link "04 Negotiate" [ref=e34] [cursor=pointer]:
+            - /url: /c/b4855a1d-cf90-4504-ac43-8b1d699e2861/negotiate
+            - generic [ref=e35]: "04"
+            - generic [ref=e36]: Negotiate
+          - link "05 Settle" [ref=e37] [cursor=pointer]:
+            - /url: /c/b4855a1d-cf90-4504-ac43-8b1d699e2861/settle
+            - generic [ref=e38]: "05"
+            - generic [ref=e39]: Settle
+        - generic [ref=e40]:
+          - generic [ref=e41]:
+            - generic [ref=e42]:
+              - generic [ref=e43]: Painting
+              - generic [ref=e44]: landlord claims ₹0
+            - textbox "Your response…" [ref=e45]: No damage — normal aging. Walls were freshly painted at move-in.
+            - generic [ref=e46]:
+              - checkbox "I have evidence (receipts, photos, agreement clauses)" [checked] [ref=e47]
+              - generic [ref=e48]: I have evidence (receipts, photos, agreement clauses)
+          - generic [ref=e49]:
+            - generic [ref=e50]:
+              - generic [ref=e51]: Fixtures & fittings
+              - generic [ref=e52]: landlord claims ₹0
+            - textbox "Your response…" [ref=e53]: Geyser was 8 years old at move-in; basin pre-existing crack
+            - generic [ref=e54]:
+              - checkbox "I have evidence (receipts, photos, agreement clauses)" [checked] [ref=e55]
+              - generic [ref=e56]: I have evidence (receipts, photos, agreement clauses)
+          - generic [ref=e57]:
+            - generic [ref=e58]:
+              - generic [ref=e59]: Utilities (electricity, water)
+              - generic [ref=e60]: landlord claims ₹0
+            - textbox "Your response…" [ref=e61]: All bills paid via UPI — receipts attached
+            - generic [ref=e62]:
+              - checkbox "I have evidence (receipts, photos, agreement clauses)" [checked] [ref=e63]
+              - generic [ref=e64]: I have evidence (receipts, photos, agreement clauses)
+          - generic [ref=e65]:
+            - generic [ref=e66]:
+              - generic [ref=e67]: Unpaid rent
+              - generic [ref=e68]: landlord claims ₹0
+            - textbox "Your response…" [ref=e69]: All rent paid
+            - generic [ref=e70]:
+              - checkbox "I have evidence (receipts, photos, agreement clauses)" [checked] [ref=e71]
+              - generic [ref=e72]: I have evidence (receipts, photos, agreement clauses)
+          - generic [ref=e73]:
+            - generic [ref=e74]:
+              - generic [ref=e75]: Cleaning
+              - generic [ref=e76]: landlord claims ₹0
+            - textbox "Your response…" [ref=e77]: Routine cleaning is normal end-of-tenancy hygiene
+            - generic [ref=e78]:
+              - checkbox "I have evidence (receipts, photos, agreement clauses)" [checked] [ref=e79]
+              - generic [ref=e80]: I have evidence (receipts, photos, agreement clauses)
+          - button "Continue to landlord view →" [ref=e81] [cursor=pointer]:
+            - generic [ref=e82]: Continue to landlord view
+            - generic [ref=e83]: →
+  - alert [ref=e84]

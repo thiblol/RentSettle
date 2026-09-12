@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RentSettle — Deck</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏠</text></svg>">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --font-display: 'Bricolage Grotesque', system-ui, sans-serif;
+    --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --bg: #fff8f0;
+    --bg-card: #fffdf9;
+    --ink: #1a0e00;
+    --orange: #e85d04;
+    --orange-deep: #c2410c;
+    --orange-light: #fff0e0;
+    --orange-border: rgba(232, 93, 4, 0.15);
+    --indigo: #3730a3;
+    --indigo-light: #eef0ff;
+    --muted: #78716c;
+    --muted-light: #a8a29e;
+    --border: #e8ddd0;
+    --border-light: #f0ebe2;
+    --green: #16a34a;
+    --shadow-sm: 0 1px 4px rgba(26,14,0,0.05);
+    --shadow-md: 0 4px 16px rgba(26,14,0,0.08);
+    --shadow-lg: 0 8px 32px rgba(26,14,0,0.10);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    height: 100%;
+    overflow: hidden;
+    background: var(--bg);
+  }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--ink);
+  }
+
+  /* ─── SLIDE SYSTEM ─── */
+  .deck {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 8vw;
+    background: var(--bg);
+  }
+
+  .slide.active { display: flex; }
+
+  /* ─── TYPOGRAPHY ─── */
+  .eyebrow {
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 1.4rem;
+    animation: fadeUp 0.7s ease-out both;
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-size: clamp(3.2rem, 6.5vw, 6rem);
+    font-weight: 800;
+    line-height: 0.96;
+    color: var(--ink);
+    max-width: 760px;
+    margin-bottom: 1.4rem;
+    animation: fadeUp 0.7s ease-out 0.1s both;
+  }
+
+  h1 .accent {
+    color: var(--orange);
+    position: relative;
+    display: inline-block;
+  }
+
+  h1 .accent::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: var(--orange);
+    border-radius: 3px;
+    opacity: 0.65;
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3.5vw, 3.2rem);
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 1.2rem;
+  }
+
+  .subtitle {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: var(--muted);
+    max-width: 520px;
+    margin-bottom: 1.8rem;
+    font-weight: 400;
+    animation: fadeUp 0.7s ease-out 0.2s both;
+  }
+
+  .subtitle .hl { color: var(--orange); font-weight: 600; }
+
+  .pill-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.7s ease-out 0.3s both;
+  }
+
+  .pill {
+    font-size: 0.74rem;
+    font-weight: 600;
+    padding: 5px 14px;
+    border-radius: 20px;
+    background: var(--orange-light);
+    color: var(--orange);
+    border: 1.5px solid rgba(232,93,4,0.18);
+    letter-spacing: 0.02em;
+  }
+
+  .pill-indigo {
+    background: var(--indigo-light);
+    color: var(--indigo);
+    border-color: rgba(55,48,163,0.15);
+  }
+
+  /* ─── LIVE BADGE ─── */
+  .live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--bg-card);
+    border: 1.5px solid var(--border);
+    border-radius: 100px;
+    padding: 10px 20px 10px 14px;
+    box-shadow: var(--shadow-md);
+    animation: fadeUp 0.7s ease-out 0.4s both;
+    width: fit-content;
+  }
+
+  .live-badge .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--orange);
+    flex-shrink: 0;
+  }
+
+  .live-badge span {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: 0.02em;
+  }
+
+  /* ─── SECTION LABEL ─── */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 1.2rem;
+    opacity: 0.85;
+  }
+
+  .section-label .line {
+    width: 24px;
+    height: 2px;
+    background: var(--orange);
+    border-radius: 1px;
+  }
+
+  /* ─── STAT CARDS ─── */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .stats-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .stat-card {
+    background: var(--bg-card);
+    border: 1.5px solid var(--border-light);
+    border-radius: 14px;
+    padding: 20px 22px;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: box-shadow 0.2s, border-color 0.2s;
+  }
+
+  .stat-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--border);
+  }
+
+  .stat-card .icon-box {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--orange-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .stat-card .stat-num {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--orange);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-card .stat-desc {
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.3;
+  }
+
+  /* ─── PAIN CARDS ─── */
+  .pain-card {
+    background: var(--bg-card);
+    border: 1.5px solid var(--border-light);
+    border-radius: 14px;
+    padding: 18px 22px;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 10px;
+  }
+
+  .pain-card .pain-tag {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--orange);
+    margin-bottom: 6px;
+  }
+
+  .pain-card .pain-text {
+    font-size: 0.85rem;
+    color: var(--ink);
+    line-height: 1.45;
+    font-weight: 500;
+  }
+
+  /* ─── FEATURE CARDS ─── */
+  .feature-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: var(--bg-card);
+    border: 1.5px solid var(--border-light);
+    border-radius: 14px;
+    padding: 16px 18px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .feature-item .feat-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--orange-light);
+    border: 1.5px solid rgba(232,93,4,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .feature-item .feat-name {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 3px;
+  }
+
+  .feature-item .feat-sub {
+    font-size: 0.75rem;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  /* ─── FLOW STEPS ─── */
+  .flow-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .flow-step {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 0;
+  }
+
+  .flow-step .step-num {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--orange);
+    min-width: 36px;
+    line-height: 1;
+    opacity: 0.8;
+  }
+
+  .flow-step .step-body {
+    flex: 1;
+    background: var(--bg-card);
+    border: 1.5px solid var(--border-light);
+    border-radius: 12px;
+    padding: 12px 16px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .flow-step .step-name {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+
+  .flow-step .step-sub {
+    font-size: 0.73rem;
+    color: var(--muted);
+  }
+
+  .flow-connector {
+    text-align: left;
+    padding-left: 23px;
+    color: var(--orange);
+    font-size: 1rem;
+    opacity: 0.4;
+    line-height: 1;
+    margin: 2px 0;
+  }
+
+  /* ─── CRITERIA CARDS ─── */
+  .criteria-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .criteria-card {
+    background: var(--bg-card);
+    border: 1.5px solid var(--border-light);
+    border-radius: 14px;
+    padding: 18px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .criteria-card .cc-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .criteria-card .cc-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: var(--orange-light);
+    border: 1.5px solid rgba(232,93,4,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  .criteria-card .cc-pct {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--orange);
+    line-height: 1;
+  }
+
+  .criteria-card .cc-name {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  .criteria-card .cc-desc {
+    font-size: 0.72rem;
+    color: var(--muted);
+    line-height: 1.35;
+  }
+
+  /* ─── VIDEO PLACEHOLDER ─── */
+  .video-placeholder {
+    width: 72vw;
+    max-width: 900px;
+    aspect-ratio: 16/9;
+    border-radius: 18px;
+    border: 3px dashed rgba(232,93,4,0.35);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: var(--bg-card);
+    box-shadow: var(--shadow-lg);
+    margin-top: 0.5rem;
+  }
+
+  .play-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--orange);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: white;
+    box-shadow: 0 4px 20px rgba(232,93,4,0.35);
+  }
+
+  .vp-label {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .vp-hint {
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  .demo-steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .demo-step-pill {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: var(--bg-card);
+    border: 1.5px solid var(--border-light);
+    color: var(--muted);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .demo-step-pill .arrow { color: var(--orange); }
+
+  /* ─── TEAM SLIDE ─── */
+  .team-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 1rem;
+  }
+
+  .brand-hex-sm {
+    width: 48px;
+    height: 48px;
+    background: var(--orange);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .brand-name {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--ink);
+    line-height: 1;
+  }
+
+  .brand-name .accent { color: var(--orange); }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── NAV ─── */
+  .nav-dots {
+    position: fixed;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 200;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--border);
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .dot.active {
+    background: var(--orange);
+    transform: scale(1.3);
+  }
+
+  .slide-counter {
+    position: fixed;
+    bottom: 28px;
+    right: 36px;
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    z-index: 200;
+  }
+
+  .nav-hint {
+    position: fixed;
+    top: 28px;
+    right: 36px;
+    font-size: 0.68rem;
+    color: var(--muted-light);
+    letter-spacing: 0.06em;
+    z-index: 200;
+  }
+
+  /* slide-specific layout */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5vw;
+    align-items: center;
+    width: 100%;
+  }
+
+  .slide-demo {
+    align-items: center;
+    text-align: center;
+    gap: 1.2rem;
+  }
+</style>
+</head>
+<body>
+
+<div class="deck">
+
+  <!-- ══════════════════════════════════
+       SLIDE 1: TITLE
+  ══════════════════════════════════ -->
+  <div class="slide slide-title active">
+    <div class="eyebrow">ODR Platform · Deposit War Room</div>
+    <h1>Deposit disputes, resolved in <span class="accent">minutes</span> — not 14 months of court.</h1>
+    <p class="subtitle">A working ODR platform for Bangalore tenants and landlords. Built on Karnataka's actual rent laws — the rule engine shows <span class="hl">which statute</span> decided every deduction.</p>
+    <div class="pill-row">
+      <span class="pill">Karnataka Rent Act</span>
+      <span class="pill">Next.js 14</span>
+      <span class="pill pill-indigo">Rule Engine</span>
+      <span class="pill pill-indigo">Gap Visualizer</span>
+    </div>
+    <div class="live-badge">
+      <div class="dot"></div>
+      <span>Live Demo · Whitefield 2BHK — ₹2L Deposit</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       SLIDE 2: PROBLEM
+  ══════════════════════════════════ -->
+  <div class="slide slide-problem">
+    <div class="two-col">
+      <div>
+        <div class="section-label"><span class="line"></span>The Problem</div>
+        <h2>Bangalore renters lose ₹1.5–2.5 lakh every month.</h2>
+        <div class="stats-grid-3" style="margin-top:1.5rem;">
+          <div class="stat-card">
+            <div class="icon-box">⚖️</div>
+            <div>
+              <div class="stat-num">68%</div>
+              <div class="stat-desc">escalate to court</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="icon-box">⏱️</div>
+            <div>
+              <div class="stat-num">14 mo</div>
+              <div class="stat-desc">avg. resolution</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="icon-box">🏠</div>
+            <div>
+              <div class="stat-num">₹2L</div>
+              <div class="stat-desc">deposit frozen</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="section-label"><span class="line"></span>Who loses</div>
+        <div class="pain-card">
+          <div class="pain-tag">Tenants</div>
+          <div class="pain-text">Can't fight bad deduction claims without knowing which law applies to each charge.</div>
+        </div>
+        <div class="pain-card">
+          <div class="pain-tag">Landlords</div>
+          <div class="pain-text">Can't recover legitimate deductions without evidence linked to specific legal rules.</div>
+        </div>
+        <div class="pain-card">
+          <div class="pain-tag">Proptech</div>
+          <div class="pain-text">A 2,000-unit Whitefield pilot launches in 8 weeks — no ODR platform in India to deploy.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       SLIDE 3: HOW IT WORKS
+  ══════════════════════════════════ -->
+  <div class="slide slide-solution">
+    <div class="two-col">
+      <div>
+        <div class="section-label"><span class="line"></span>How it works</div>
+        <h2>Five deduction categories. Three statutory rules. One settlement.</h2>
+        <div class="feature-list" style="margin-top:1.2rem;">
+          <div class="feature-item">
+            <div class="feat-icon">⚖️</div>
+            <div>
+              <div class="feat-name">Statutory rule engine</div>
+              <div class="feat-sub">10% annual depreciation cap, 1-month notice rule, wear-and-tear exclusion — all cited on-screen</div>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feat-icon">📊</div>
+            <div>
+              <div class="feat-name">Gap visualizer</div>
+              <div class="feat-sub">Animated bars showing tenant vs. landlord offers converging in real-time</div>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feat-icon">📄</div>
+            <div>
+              <div class="feat-name">Settlement PDF</div>
+              <div class="feat-sub">Legally formatted, full deduction breakdown, rule citations, digital consent timestamps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="section-label"><span class="line"></span>The flow</div>
+        <div class="flow-visual">
+          <div class="flow-step">
+            <div class="step-num">01</div>
+            <div class="step-body">
+              <div class="step-name">Tenant submits claim</div>
+              <div class="step-sub">5 deduction categories with evidence</div>
+            </div>
+          </div>
+          <div class="flow-connector">↓</div>
+          <div class="flow-step">
+            <div class="step-num">02</div>
+            <div class="step-body">
+              <div class="step-name">Landlord submits counter</div>
+              <div class="step-sub">Same case ID, opposite perspective</div>
+            </div>
+          </div>
+          <div class="flow-connector">↓</div>
+          <div class="flow-step">
+            <div class="step-num">03</div>
+            <div class="step-body">
+              <div class="step-name">Rule engine runs</div>
+              <div class="step-sub">Statutory caps applied to all 5 categories</div>
+            </div>
+          </div>
+          <div class="flow-connector">↓</div>
+          <div class="flow-step">
+            <div class="step-num">04</div>
+            <div class="step-body">
+              <div class="step-name">Negotiation (up to 3 rounds)</div>
+              <div class="step-sub">Auto-settle at gap ≤ 5%, escalate otherwise</div>
+            </div>
+          </div>
+          <div class="flow-connector">↓</div>
+          <div class="flow-step">
+            <div class="step-num">05</div>
+            <div class="step-body">
+              <div class="step-name">Settlement PDF issued</div>
+              <div class="step-sub">Both parties sign digitally with timestamps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       SLIDE 4: DEMO
+  ══════════════════════════════════ -->
+  <div class="slide slide-demo">
+    <div class="eyebrow" style="text-align:center;display:block;">Live Demo</div>
+    <h2 style="text-align:center;">Watch one dispute go from<br>intake to settlement in 3 minutes.</h2>
+    <p class="subtitle" style="text-align:center;max-width:480px;margin:0 auto;">Full end-to-end walkthrough — no scripts, no cherry-picking.</p>
+    <div class="demo-steps">
+      <span class="demo-step-pill">Tenant portal</span>
+      <span class="demo-step-pill"><span class="arrow">→</span>Landlord portal</span>
+      <span class="demo-step-pill"><span class="arrow">→</span>Rule engine</span>
+      <span class="demo-step-pill"><span class="arrow">→</span>Negotiation</span>
+      <span class="demo-step-pill"><span class="arrow">→</span>Settlement PDF</span>
+    </div>
+    <div class="video-placeholder">
+      <div class="play-icon">▶</div>
+      <span class="vp-label">Whitefield 2BHK — ₹2L Deposit</span>
+      <span class="vp-hint">scenario loads → tenant intake → landlord counter → rule engine → gap visualizer → PDF</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       SLIDE 5: WHY IT WINS
+  ══════════════════════════════════ -->
+  <div class="slide slide-proof">
+    <div class="two-col">
+      <div>
+        <div class="section-label"><span class="line"></span>Why it wins</div>
+        <h2>Every judging criterion gets a visible proof point.</h2>
+        <p class="subtitle">We built to the rubric. Judges don't have to take our word for any of it — they can see it working in 30 seconds.</p>
+      </div>
+      <div class="criteria-grid">
+        <div class="criteria-card">
+          <div class="cc-top">
+            <div class="cc-icon">⚖️</div>
+            <div class="cc-pct">30%</div>
+          </div>
+          <div class="cc-name">Legal accuracy</div>
+          <div class="cc-desc">Rule engine cites every statute applied — on-screen, in the PDF</div>
+        </div>
+        <div class="criteria-card">
+          <div class="cc-top">
+            <div class="cc-icon">🎨</div>
+            <div class="cc-pct">25%</div>
+          </div>
+          <div class="cc-name">Dual-party UX</div>
+          <div class="cc-desc">Tenant + landlord portals, role indicator in header, same case ID shown both sides</div>
+        </div>
+        <div class="criteria-card">
+          <div class="cc-top">
+            <div class="cc-icon">🔄</div>
+            <div class="cc-pct">20%</div>
+          </div>
+          <div class="cc-name">State machine</div>
+          <div class="cc-desc">OPEN → ROUND_1 → ROUND_2 → ROUND_3 → SETTLED / ESCALATED — visible diagram</div>
+        </div>
+        <div class="criteria-card">
+          <div class="cc-top">
+            <div class="cc-icon">📄</div>
+            <div class="cc-pct">15%</div>
+          </div>
+          <div class="cc-name">Settlement PDF</div>
+          <div class="cc-desc">Full deduction breakdown, rule citations, digital consent timestamps — opens in browser</div>
+        </div>
+        <div class="criteria-card" style="grid-column: 1 / -1;">
+          <div class="cc-top">
+            <div class="cc-icon">💡</div>
+            <div class="cc-pct">10%</div>
+          </div>
+          <div class="cc-name">Evidence workflow</div>
+          <div class="cc-desc">Per-category evidence linked to specific rules — denied deductions show "evidence insufficient for rule X"</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       SLIDE 6: TEAM / CLOSE
+  ══════════════════════════════════ -->
+  <div class="slide slide-team" style="align-items:center;text-align:center;gap:1.5rem;">
+    <div class="eyebrow" style="text-align:center;display:block;">The build</div>
+    <h1 style="text-align:center;">Rent<span style="color:var(--orange);">Settle</span>.</h1>
+    <div class="team-brand" style="justify-content:center;">
+      <div class="brand-hex-sm">🏠</div>
+      <div class="brand-name">Rent<span class="accent">Settle</span></div>
+    </div>
+    <p class="subtitle" style="text-align:center;max-width:440px;margin:0 auto;">ODR for Bangalore's rental market. Built in a 16-hour hackathon. Proof it works: watch the demo.</p>
+    <div class="pill-row" style="justify-content:center;margin-bottom:0;">
+      <span class="pill">Next.js 14</span>
+      <span class="pill">TypeScript</span>
+      <span class="pill pill-indigo">Tailwind + shadcn/ui</span>
+      <span class="pill pill-indigo">SQLite + Drizzle ORM</span>
+      <span class="pill pill-indigo">@react-pdf/renderer</span>
+    </div>
+  </div>
+
+</div><!-- /deck -->
+
+<!-- NAV -->
+<div class="nav-dots">
+  <div class="dot active" onclick="go(0)"></div>
+  <div class="dot" onclick="go(1)"></div>
+  <div class="dot" onclick="go(2)"></div>
+  <div class="dot" onclick="go(3)"></div>
+  <div class="dot" onclick="go(4)"></div>
+  <div class="dot" onclick="go(5)"></div>
+</div>
+<div class="slide-counter">1 / 6</div>
+<div class="nav-hint">← → to navigate</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const dots = document.querySelectorAll('.dot');
+  let cur = 0;
+
+  function go(i) {
+    slides.forEach((s, j) => {
+      s.classList.toggle('active', j === i);
+    });
+    dots.forEach((d, j) => {
+      d.classList.toggle('active', j === i);
+    });
+    document.querySelector('.slide-counter').textContent = (i + 1) + ' / ' + slides.length;
+    cur = i;
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ') go((cur + 1) % slides.length);
+    if (e.key === 'ArrowLeft') go((cur - 1 + slides.length) % slides.length);
+  });
+</script>
+</body>
+</html>

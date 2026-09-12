@@ -1,0 +1,277 @@
+- generic [active] [ref=f6e1]:
+  - generic [ref=f6e2]:
+    - banner [ref=f6e3]:
+      - generic [ref=f6e4]:
+        - generic [ref=f6e5]:
+          - link "RentSettle" [ref=f6e6] [cursor=pointer]:
+            - /url: /
+          - generic [ref=f6e7]: / case
+        - generic [ref=f6e8]:
+          - generic [ref=f6e9]: Priya Sharma vs Rajesh Iyer
+          - generic [ref=f6e10]: Prestige Shantiniketan, Whitefield, Bangalore — Tower 4, Flat 1207
+    - main [ref=f6e11]:
+      - generic [ref=f6e12]:
+        - generic [ref=f6e13]:
+          - generic [ref=f6e14]:
+            - generic [ref=f6e15]: 03 \xb7 Calculation
+            - heading "The rule engine." [level=1] [ref=f6e16]
+          - button "↻ reset to demo data" [ref=f6e17] [cursor=pointer]
+        - navigation [ref=f6e19]:
+          - link "01 Tenant" [ref=f6e20] [cursor=pointer]:
+            - /url: /c/00894e93-7713-4dc9-9c93-b37b830ecf09/tenant/intake
+            - generic [ref=f6e21]: "01"
+            - generic [ref=f6e22]: Tenant
+          - link "02 Landlord" [ref=f6e23] [cursor=pointer]:
+            - /url: /c/00894e93-7713-4dc9-9c93-b37b830ecf09/landlord/intake
+            - generic [ref=f6e24]: "02"
+            - generic [ref=f6e25]: Landlord
+          - link "03 Calculation" [ref=f6e26] [cursor=pointer]:
+            - /url: /c/00894e93-7713-4dc9-9c93-b37b830ecf09/calc
+            - generic [ref=f6e27]: "03"
+            - generic [ref=f6e28]: Calculation
+          - link "04 Negotiate" [ref=f6e30] [cursor=pointer]:
+            - /url: /c/00894e93-7713-4dc9-9c93-b37b830ecf09/negotiate
+            - generic [ref=f6e31]: "04"
+            - generic [ref=f6e32]: Negotiate
+          - link "05 Settle" [ref=f6e33] [cursor=pointer]:
+            - /url: /c/00894e93-7713-4dc9-9c93-b37b830ecf09/settle
+            - generic [ref=f6e34]: "05"
+            - generic [ref=f6e35]: Settle
+        - generic [ref=f6e37]:
+          - generic [ref=f6e38]: Rule engine is running…
+          - generic [ref=f6e39]:
+            - generic [ref=f6e41]:
+              - generic [ref=f6e42]: "1"
+              - generic [ref=f6e43]:
+                - generic [ref=f6e44]: Claim received
+                - generic [ref=f6e45]: "Painting: ₹35,000"
+            - generic [ref=f6e46]: →
+            - generic [ref=f6e48]:
+              - generic [ref=f6e49]: "2"
+              - generic [ref=f6e50]:
+                - generic [ref=f6e51]: Rule check
+                - generic [ref=f6e52]: Transfer of Property Act, 1882 §108(m); Karnataka Rent Act, 1999 §47; Karnataka Rent Act, 1999 §48(d)
+            - generic [ref=f6e53]: →
+            - generic [ref=f6e55]:
+              - generic [ref=f6e56]: "3"
+              - generic [ref=f6e57]:
+                - generic [ref=f6e58]: Outcome
+                - generic [ref=f6e59]: Wear-and-tear exclusion…
+            - generic [ref=f6e60]: →
+            - generic [ref=f6e61]:
+              - generic [ref=f6e62]: Verdict
+              - generic [ref=f6e63]: Denied
+              - generic [ref=f6e64]: ₹0
+          - button "View breakdown ↓" [ref=f6e66] [cursor=pointer]
+        - generic [ref=f6e67]:
+          - generic [ref=f6e68]:
+            - generic [ref=f6e69]: Deposit
+            - generic [ref=f6e70]: ₹2,00,000
+          - generic [ref=f6e71]:
+            - generic [ref=f6e72]: Total allowed deductions
+            - generic [ref=f6e73]: ₹8,097.53
+          - generic [ref=f6e74]:
+            - generic [ref=f6e75]: Refund to tenant
+            - generic [ref=f6e76]: ₹1,91,902.47
+        - generic [ref=f6e77]:
+          - generic [ref=f6e78]:
+            - generic [ref=f6e79]:
+              - generic [ref=f6e80]:
+                - generic [ref=f6e81]:
+                  - generic [ref=f6e82]: Painting
+                  - button "Show rule details" [ref=f6e84] [cursor=pointer]: "?"
+                - generic [ref=f6e85]: No evidence of damage beyond normal wear-and-tear. Periodic repainting is structural maintenance, the landlord's duty under Karnataka Rent Act §47.
+              - generic [ref=f6e86]:
+                - generic [ref=f6e87]: Claimed
+                - generic [ref=f6e88]: ₹35,000
+                - generic [ref=f6e89]: denied
+            - generic [ref=f6e91]:
+              - generic [ref=f6e92]: Reasoning chain
+              - generic [ref=f6e93]:
+                - generic [ref=f6e94]:
+                  - generic [ref=f6e96]:
+                    - generic [ref=f6e97]: "1"
+                    - generic [ref=f6e98]:
+                      - generic [ref=f6e99]: Claim received
+                      - generic [ref=f6e100]: landlord claims for repainting
+                  - generic [ref=f6e101]: →
+                - generic [ref=f6e102]:
+                  - generic [ref=f6e104]:
+                    - generic [ref=f6e105]: "2"
+                    - generic [ref=f6e106]:
+                      - generic [ref=f6e107]: Rule check
+                      - generic [ref=f6e108]: No evidence → apply TPA Section 108(m) wear exception
+                  - generic [ref=f6e109]: →
+                - generic [ref=f6e112]:
+                  - generic [ref=f6e113]: "3"
+                  - generic [ref=f6e114]:
+                    - generic [ref=f6e115]: Outcome
+                    - generic [ref=f6e116]: Normal wear — landlord's duty per KA Rent Section 47
+                - generic [ref=f6e117]:
+                  - generic [ref=f6e118]: Final
+                  - generic [ref=f6e119]: DENIED
+            - button "About this rule +" [ref=f6e122] [cursor=pointer]:
+              - generic [ref=f6e123]: About this rule
+              - generic [ref=f6e124]: +
+          - generic [ref=f6e125]:
+            - generic [ref=f6e126]:
+              - generic [ref=f6e127]:
+                - generic [ref=f6e128]:
+                  - generic [ref=f6e129]: Fixtures & fittings
+                  - button "Show rule details" [ref=f6e131] [cursor=pointer]: "?"
+                - generic [ref=f6e132]: Claim capped at industry-standard depreciation (10% per year × 1.998631074606434 years of 10-year useful life).
+              - generic [ref=f6e133]:
+                - generic [ref=f6e134]: Claimed
+                - generic [ref=f6e135]: ₹18,000
+                - generic [ref=f6e136]: ₹3,597.53
+            - generic [ref=f6e138]:
+              - generic [ref=f6e139]: Reasoning chain
+              - generic [ref=f6e140]:
+                - generic [ref=f6e141]:
+                  - generic [ref=f6e143]:
+                    - generic [ref=f6e144]: "1"
+                    - generic [ref=f6e145]:
+                      - generic [ref=f6e146]: Claim received
+                      - generic [ref=f6e147]: landlord claims for fixture damage
+                  - generic [ref=f6e148]: →
+                - generic [ref=f6e149]:
+                  - generic [ref=f6e151]:
+                    - generic [ref=f6e152]: "2"
+                    - generic [ref=f6e153]:
+                      - generic [ref=f6e154]: Rule check
+                      - generic [ref=f6e155]: Industry-standard 10% per year depreciation applied
+                  - generic [ref=f6e156]: →
+                - generic [ref=f6e159]:
+                  - generic [ref=f6e160]: "3"
+                  - generic [ref=f6e161]:
+                    - generic [ref=f6e162]: Outcome
+                    - generic [ref=f6e163]: Capped at 10% × 2 yrs of original cost
+                - generic [ref=f6e164]:
+                  - generic [ref=f6e165]: Final
+                  - generic [ref=f6e166]: CAPPED ₹3,597.53
+            - button "About this rule +" [ref=f6e169] [cursor=pointer]:
+              - generic [ref=f6e170]: About this rule
+              - generic [ref=f6e171]: +
+          - generic [ref=f6e172]:
+            - generic [ref=f6e173]:
+              - generic [ref=f6e174]:
+                - generic [ref=f6e175]:
+                  - generic [ref=f6e176]: Utilities
+                  - button "Show rule details" [ref=f6e178] [cursor=pointer]: "?"
+                - generic [ref=f6e179]: Utility deduction supported by submitted bill receipts.
+              - generic [ref=f6e180]:
+                - generic [ref=f6e181]: Claimed
+                - generic [ref=f6e182]: ₹4,500
+                - generic [ref=f6e183]: ₹4,500
+            - generic [ref=f6e185]:
+              - generic [ref=f6e186]: Reasoning chain
+              - generic [ref=f6e187]:
+                - generic [ref=f6e188]:
+                  - generic [ref=f6e190]:
+                    - generic [ref=f6e191]: "1"
+                    - generic [ref=f6e192]:
+                      - generic [ref=f6e193]: Claim received
+                      - generic [ref=f6e194]: landlord claims unpaid utility bills
+                  - generic [ref=f6e195]: →
+                - generic [ref=f6e196]:
+                  - generic [ref=f6e198]:
+                    - generic [ref=f6e199]: "2"
+                    - generic [ref=f6e200]:
+                      - generic [ref=f6e201]: Rule check
+                      - generic [ref=f6e202]: Bill receipts verified
+                  - generic [ref=f6e203]: →
+                - generic [ref=f6e206]:
+                  - generic [ref=f6e207]: "3"
+                  - generic [ref=f6e208]:
+                    - generic [ref=f6e209]: Outcome
+                    - generic [ref=f6e210]: Deduction allowed in full
+                - generic [ref=f6e211]:
+                  - generic [ref=f6e212]: Final
+                  - generic [ref=f6e213]: ₹4,500
+            - button "About this rule +" [ref=f6e216] [cursor=pointer]:
+              - generic [ref=f6e217]: About this rule
+              - generic [ref=f6e218]: +
+          - generic [ref=f6e219]:
+            - generic [ref=f6e220]:
+              - generic [ref=f6e221]:
+                - generic [ref=f6e222]:
+                  - generic [ref=f6e223]: Unpaid rent
+                  - button "Show rule details" [ref=f6e225] [cursor=pointer]: "?"
+                - generic [ref=f6e226]: No unpaid rent claimed.
+              - generic [ref=f6e227]:
+                - generic [ref=f6e228]: Claimed
+                - generic [ref=f6e229]: ₹0
+                - generic [ref=f6e230]: denied
+            - generic [ref=f6e232]:
+              - generic [ref=f6e233]: Reasoning chain
+              - generic [ref=f6e234]:
+                - generic [ref=f6e235]:
+                  - generic [ref=f6e237]:
+                    - generic [ref=f6e238]: "1"
+                    - generic [ref=f6e239]:
+                      - generic [ref=f6e240]: Claim received
+                      - generic [ref=f6e241]: landlord claims unpaid rent
+                  - generic [ref=f6e242]: →
+                - generic [ref=f6e243]:
+                  - generic [ref=f6e245]:
+                    - generic [ref=f6e246]: "2"
+                    - generic [ref=f6e247]:
+                      - generic [ref=f6e248]: Rule check
+                      - generic [ref=f6e249]: No proof of arrears → Section 48(a)
+                  - generic [ref=f6e250]: →
+                - generic [ref=f6e253]:
+                  - generic [ref=f6e254]: "3"
+                  - generic [ref=f6e255]:
+                    - generic [ref=f6e256]: Outcome
+                    - generic [ref=f6e257]: Bare claim denied
+                - generic [ref=f6e258]:
+                  - generic [ref=f6e259]: Final
+                  - generic [ref=f6e260]: DENIED
+            - button "About this rule +" [ref=f6e263] [cursor=pointer]:
+              - generic [ref=f6e264]: About this rule
+              - generic [ref=f6e265]: +
+          - generic [ref=f6e266]:
+            - generic [ref=f6e267]:
+              - generic [ref=f6e268]:
+                - generic [ref=f6e269]:
+                  - generic [ref=f6e270]: Cleaning
+                  - button "Show rule details" [ref=f6e272] [cursor=pointer]: "?"
+                - generic [ref=f6e273]: Routine cleaning is normal end-of-tenancy hygiene, not damage (TPA §108(m) reasonable wear exception; Karnataka Rent Act §48(d) limits tenant to day-to-day repairs).
+              - generic [ref=f6e274]:
+                - generic [ref=f6e275]: Claimed
+                - generic [ref=f6e276]: ₹12,000
+                - generic [ref=f6e277]: denied
+            - generic [ref=f6e279]:
+              - generic [ref=f6e280]: Reasoning chain
+              - generic [ref=f6e281]:
+                - generic [ref=f6e282]:
+                  - generic [ref=f6e284]:
+                    - generic [ref=f6e285]: "1"
+                    - generic [ref=f6e286]:
+                      - generic [ref=f6e287]: Claim received
+                      - generic [ref=f6e288]: landlord deducts for cleaning
+                  - generic [ref=f6e289]: →
+                - generic [ref=f6e290]:
+                  - generic [ref=f6e292]:
+                    - generic [ref=f6e293]: "2"
+                    - generic [ref=f6e294]:
+                      - generic [ref=f6e295]: Rule check
+                      - generic [ref=f6e296]: TPA Section 108(m) wear exception applies
+                  - generic [ref=f6e297]: →
+                - generic [ref=f6e300]:
+                  - generic [ref=f6e301]: "3"
+                  - generic [ref=f6e302]:
+                    - generic [ref=f6e303]: Outcome
+                    - generic [ref=f6e304]: Routine cleaning is normal end-of-tenancy hygiene
+                - generic [ref=f6e305]:
+                  - generic [ref=f6e306]: Final
+                  - generic [ref=f6e307]: DENIED
+            - button "About this rule +" [ref=f6e310] [cursor=pointer]:
+              - generic [ref=f6e311]: About this rule
+              - generic [ref=f6e312]: +
+        - generic [ref=f6e313]: Applies federal + Karnataka law + industry standards \xb7 Not legal advice
+        - link "Continue to negotiation →" [ref=f6e315] [cursor=pointer]:
+          - /url: /c/00894e93-7713-4dc9-9c93-b37b830ecf09/negotiate
+          - generic [ref=f6e316]: Continue to negotiation
+          - generic [ref=f6e317]: →
+  - alert [ref=f6e318]

@@ -42,5 +42,11 @@ export const whitefield2BHK = {
       tenantOffer: rupeesToPaise(52000),
       landlordOffer: rupeesToPaise(50000)    // gap = ₹2,000 / ₹2,00,000 = 1% — auto-settles
     }
+  },
+  escalationData: {
+    tenantFinalPosition: rupeesToPaise(55000),   // ₹55,000 in paise
+    landlordFinalPosition: rupeesToPaise(45000), // ₹45,000 in paise
+    gapPercent: 500,                            // 5% in basis points (500 bps = 5%)
+    escalatedAt: '2026-08-15T10:30:00Z'
   }
 };

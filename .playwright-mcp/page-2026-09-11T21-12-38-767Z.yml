@@ -1,0 +1,29 @@
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - generic [ref=e3]: Live demo · 3 scenarios loaded
+    - generic [ref=e6]:
+      - heading "RentSettle" [level=1] [ref=e8]
+      - paragraph [ref=e10]: Resolve your deposit dispute in minutes,not fourteen months of court.
+      - paragraph [ref=e11]: A working ODR platform built on Karnataka's Rent Act and Supreme Court precedent. Pick a dispute below to walk one through from intake to settlement PDF.
+    - generic [ref=e12]: 01 · Pick a dispute
+    - generic [ref=e15]:
+      - button "Whitefield 2BHK — Priya vs Rajesh ₹2,00,000 deposit · 24 months · Painting + tap dispute start →" [ref=e16] [cursor=pointer]:
+        - generic [ref=e17]:
+          - generic [ref=e18]: Whitefield 2BHK — Priya vs Rajesh
+          - generic [ref=e19]: ₹2,00,000 deposit · 24 months · Painting + tap dispute
+        - generic [ref=e20]: start →
+      - button "Koramangala 1BHK — Amit vs Sunita ₹90,000 deposit · 18 months · Real damage start →" [ref=e21] [cursor=pointer]:
+        - generic [ref=e22]:
+          - generic [ref=e23]: Koramangala 1BHK — Amit vs Sunita
+          - generic [ref=e24]: ₹90,000 deposit · 18 months · Real damage
+        - generic [ref=e25]: start →
+      - button "Indiranagar 3BHK — Sneha & Karthik vs Farooq ₹4,50,000 deposit · 36 months · High-value dispute start →" [ref=e26] [cursor=pointer]:
+        - generic [ref=e27]:
+          - generic [ref=e28]: Indiranagar 3BHK — Sneha & Karthik vs Farooq
+          - generic [ref=e29]: ₹4,50,000 deposit · 36 months · High-value dispute
+        - generic [ref=e30]: start →
+    - generic [ref=e31]:
+      - generic [ref=e32]: Applies federal + Karnataka law. Not legal advice.
+      - link "What if they can't agree? →" [ref=e33] [cursor=pointer]:
+        - /url: /showcase/mediator
+  - alert [ref=e34]

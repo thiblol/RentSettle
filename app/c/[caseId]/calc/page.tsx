@@ -5,6 +5,7 @@ import { ResetButton } from '@/components/ResetButton';
 import { RuleExplainer } from '@/components/RuleExplainer';
 import { CitationTooltip } from '@/components/CitationTooltip';
 import { ReasoningChain } from '@/components/ReasoningChain';
+import { RuleEngineHero } from '@/components/RuleEngineHero';
 import { DeductionCategory } from '@/lib/rules/types';
 import { db } from '@/lib/db/client';
 import { claims } from '@/lib/db/schema';
@@ -46,6 +47,10 @@ export default async function CalcPage({ params }: { params: { caseId: string } 
         <StageNav caseId={c.id} current="calc" />
       </div>
 
+      <div className="my-10 max-w-5xl">
+        <RuleEngineHero claims={landlordClaims} />
+      </div>
+
       {/* Summary row — paper-table style */}
       <div className="my-12 grid grid-cols-3 gap-px overflow-hidden rounded-lg border border-line bg-line">
         <div className="bg-white p-6">
@@ -63,7 +68,7 @@ export default async function CalcPage({ params }: { params: { caseId: string } 
       </div>
 
       {/* Per-deduction cards */}
-      <div className="space-y-3">
+      <div id="deduction-breakdown" className="space-y-3">
         {landlordClaims.map(cl => (
           <div key={cl.id} className="rounded-lg border border-line bg-white p-6 transition-all hover:border-ink hover:shadow-sm">
             <div className="flex items-start justify-between gap-6">
